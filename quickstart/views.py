@@ -1,3 +1,5 @@
+from typing import TYPE_CHECKING
+
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import authentication, permissions
@@ -9,6 +11,10 @@ from quickstart.models import Category
 from quickstart.serializers import CategorySerializer
 
 from rest_framework import status
+
+if TYPE_CHECKING:
+    from rest_framework.request import Request
+    from django.db.models.query import QuerySet
 
 
 class ListUsers(APIView):
@@ -33,8 +39,12 @@ class ListUsers(APIView):
 
 class ListCategories(APIView):
 
-    def get(self, request):
-        categories = Category.objects.all()
+    @staticmethod
+    def get_user_queryset(request: "Request") -> "QuerySet":
+        return Category.objects.filter(user=request.user)
+
+    def get(self, request: "Request") -> Response:
+        categories = self.get_user_queryset(request=request)
         serializer = CategorySerializer(instance=categories, many=True)
         context = {
             "categories": serializer.data,
@@ -45,8 +55,12 @@ class ListCategories(APIView):
 
 class CategoryView(APIView):
 
+    @staticmethod
+    def get_user_queryset(request: "Request") -> "QuerySet":
+        return Category.objects.filter(user=request.user)
+
     def get(self, request):
-        category = get_object_or_404(Category, pk=request.query_params.get("id"))
+        category = get_object_or_404(self.get_user_queryset(request), pk=request.query_params.get("id"))
         context = {
             "category": CategorySerializer(instance=category).data,
             "success": True,
@@ -56,7 +70,7 @@ class CategoryView(APIView):
     def post(self, request):
         context = {"success": True}
         http_status = status.HTTP_201_CREATED
-        serializer = CategorySerializer(data=request.data)
+        serializer = CategorySerializer(data={"user": request.user.id, **request.data})
 
         if serializer.is_valid():
             serializer.save()
@@ -71,8 +85,8 @@ class CategoryView(APIView):
         context = {"success": True}
         http_status = status.HTTP_200_OK
 
-        category = get_object_or_404(Category, pk=request.data.get("id"))
-        serializer = CategorySerializer(instance=category, data=request.data)
+        category = get_object_or_404(self.get_user_queryset(request), pk=request.data.get("id"))
+        serializer = CategorySerializer(instance=category, data={"user": request.user.id, **request.data})
 
         if serializer.is_valid():
             serializer.save()
@@ -87,7 +101,8 @@ class CategoryView(APIView):
         context = {"success": True}
         http_status = status.HTTP_204_NO_CONTENT
 
-        category = get_object_or_404(Category, pk=request.data.get("id"))
-        category.delete()
+        category = get_object_or_404(self.get_user_queryset(request), pk=request.data.get("id"))
+        category.archived = True
+        category.save()
 
         return Response(context, status=http_status)
