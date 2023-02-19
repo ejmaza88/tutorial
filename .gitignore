@@ -9,4 +9,4 @@ tutorial/local_settings.py
 
 .venv
 venv
-.sqlite3
+*.sqlite3
