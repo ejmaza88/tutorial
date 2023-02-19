@@ -1,0 +1,12 @@
+*.pyc
+__pycache__
+.idea
+
+
+tutorial/local_settings.py
+.DS_Store
+
+
+.venv
+venv
+.sqlite3
