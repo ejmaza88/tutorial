@@ -65,7 +65,7 @@ class CategoryView(APIView):
             "category": CategorySerializer(instance=category).data,
             "success": True,
         }
-        return Response(context)
+        return Response(context, status=status.HTTP_200_OK)
 
     def post(self, request):
         context = {"success": True}
