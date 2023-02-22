@@ -10,3 +10,27 @@ tutorial/local_settings.py
 .venv
 venv
 *.sqlite3
+
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+assets/node_modules
+assets/.pnp
+.pnp.js
+
+# testing
+assets/coverage
+
+# production
+assets/build
+
+# misc
+.DS_Store
+assets/.env.local
+assets/.env.development.local
+assets/.env.test.local
+assets/.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
