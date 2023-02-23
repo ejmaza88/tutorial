@@ -1,18 +1,13 @@
+import React from "react";
+import { RouterProvider } from "react-router-dom";
+import routes from "./router/Router";
 import './App.css';
-import HeaderComp from "./components/Header";
-import Sidebar from "./components/Sidebar";
-import Footer from "./components/Footer";
 
 
 function App() {
   return (
     <div className="App">
-      <HeaderComp />
-      <Sidebar />
-      <main id="main" className="main">
-
-      </main>
-      <Footer />
+      <RouterProvider router={routes} />
     </div>
   );
 }
