@@ -1,12 +1,14 @@
 import React from 'react'
-
+import {useName} from "../contexts/NameContext/NameContext";
 
 const Main = (props) => {
+  // const [name, setName] = useName()
 
   return (
     <>
       <h1>Main</h1>
       {props?.name}
+      <br />
     </>
   )
 }
