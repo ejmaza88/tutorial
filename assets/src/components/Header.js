@@ -1,6 +1,7 @@
 import React from 'react'
 import Logo from '../assets/img/logo.png'
 import NavDropdown from 'react-bootstrap/NavDropdown';
+import { Link } from "react-router-dom";
 
 
 const HeaderComp = () => {
@@ -47,6 +48,10 @@ const HeaderComp = () => {
               <NavDropdown.Item href="#action/3.4">
                 <i className="bi bi-box-arrow-right"/> Sign Out
               </NavDropdown.Item>
+
+              <Link to={"sign/out"}>
+                <i className="bi bi-box-arrow-right"/> Sign Out
+              </Link>
             </NavDropdown>
           </li>
 

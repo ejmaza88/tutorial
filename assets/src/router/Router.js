@@ -14,6 +14,7 @@ const Home = Loadable(lazy(() => import("../pages/Home")));
 const Dashboard = Loadable(lazy(() => import("../pages/Dashboard")));
 const Main = Loadable(lazy(() => import("../pages/Main")));
 const Blank = Loadable(lazy(() => import("../pages/Blank")));
+const SignOut = Loadable(lazy(() => import("../pages/NavBar/SignOut/SignOut")));
 
 
 const routes = createBrowserRouter([
@@ -31,11 +32,15 @@ const routes = createBrowserRouter([
       },
       {
         path: "main",
-        element: <Main name={"esvin mazariegos"}/>,
+        element: <Main name={"esvin mazariegos"} />,
       },
       {
         path: "blank",
-        element: <Blank name={"aldez mazariegos"}/>,
+        element: <Blank name={"aldez mazariegos"} />,
+      },
+      {
+        path: "sign/out",
+        element: <SignOut />,
       },
     ]
   }
