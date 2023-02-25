@@ -1,8 +1,11 @@
 import React from 'react'
 import LoginRequired from "../components/LoginRequired";
+import useDocumentTitle from "../hooks/useDocumentTitle";
 
 
 const Dashboard = () => {
+  useDocumentTitle("Dashboard")
+
   return (
     <>
       <LoginRequired>

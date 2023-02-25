@@ -1,3 +1,5 @@
+import jwt_decode from "jwt-decode";
+
 const useToken = () => {
 
   const getToken = () => {
@@ -14,10 +16,16 @@ const useToken = () => {
     localStorage.removeItem("token")
   }
 
+  const tokenPayload = () => {
+    const token = getToken().access
+    return jwt_decode(token)
+  }
+
   return {
     getToken: getToken,
     saveToken: saveToken,
     delToken: delToken,
+    tokenPayload: tokenPayload
   }
 
 }

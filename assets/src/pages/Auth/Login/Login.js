@@ -28,7 +28,6 @@ const Login = () => {
           </Col>
         </Row>
 
-
         <Row className="justify-content-md-center">
           <Col xs lg={4}>
             <Card body>

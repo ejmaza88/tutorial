@@ -5,7 +5,7 @@ import {useAuth} from "../contexts/AuthContext";
 
 
 const HeaderComp = () => {
-  const {handleLogout} = useAuth()
+  const {handleLogout, tokenPayload} = useAuth()
 
   const handleSideBar = () => {
     document.querySelector('body').classList.toggle('toggle-sidebar')
@@ -34,7 +34,7 @@ const HeaderComp = () => {
 
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title="Mazariegos"
+              title={tokenPayload().username}
             >
               <NavDropdown.Item href="#action/3.1">
                 <i className="bi bi-person"/> My Profile
@@ -43,11 +43,6 @@ const HeaderComp = () => {
 
               <NavDropdown.Item href="#action/3.2">
                 <i className="bi bi-gear"/> Account Settings
-              </NavDropdown.Item>
-              <NavDropdown.Divider />
-
-              <NavDropdown.Item href="#action/3.3">
-                <i className="bi bi-question-circle"/>Need Help?
               </NavDropdown.Item>
               <NavDropdown.Divider />
 

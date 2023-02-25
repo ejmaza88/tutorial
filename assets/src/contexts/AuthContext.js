@@ -11,7 +11,7 @@ const AuthProvider = ({children}) => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const {getToken, saveToken, delToken} = useToken()
+  const {getToken, saveToken, delToken, tokenPayload} = useToken()
 
   const loginRequest = async (credentials) => {
     return fetch('http://localhost:8000/auth/token/', {
@@ -46,6 +46,7 @@ const AuthProvider = ({children}) => {
 
   const value = {
     getToken: getToken,
+    tokenPayload: tokenPayload,
     handleLogin: handleLogin,
     handleLogout: handleLogout,
   }
