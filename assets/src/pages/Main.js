@@ -1,14 +1,15 @@
 import React from 'react'
+import LoginRequired from "../components/LoginRequired";
 // import {useName} from "../contexts/NameContext";
 
-const Main = (props) => {
+const Main = () => {
   // const [name, setName] = useName()
 
   return (
     <>
-      <h1>Main</h1>
-      {props?.name}
-      <br />
+      <LoginRequired>
+        <h1>Main</h1>
+      </LoginRequired>
     </>
   )
 }

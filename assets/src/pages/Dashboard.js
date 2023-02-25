@@ -1,12 +1,13 @@
 import React from 'react'
+import LoginRequired from "../components/LoginRequired";
 
 
-const Dashboard = (props) => {
-
+const Dashboard = () => {
   return (
     <>
-      <h1>Dashboard</h1>
-      {props?.name}
+      <LoginRequired>
+        <h1>Dashboard</h1>
+      </LoginRequired>
     </>
   )
 }

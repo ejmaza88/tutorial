@@ -1,14 +1,16 @@
 import React from 'react'
+import LoginRequired from "../components/LoginRequired";
 
 
-const Blank = (props) => {
-
+const Blank = () => {
   return (
     <>
-      <h1>Blank</h1>
-      {props?.name}
+      <LoginRequired>
+        <h1>Blank</h1>
+      </LoginRequired>
     </>
   )
 }
+
 
 export default Blank
