@@ -15,17 +15,8 @@ import './Login.css'
 const Login = () => {
   const {handleLogin} = useAuth()
 
-  const [username, setUserName] = useState();
-  const [password, setPassword] = useState();
+  const handleSubmit = async (e) => handleLogin(e)
 
-  const handleSubmit = async e => {
-    e.preventDefault();
-
-    handleLogin({
-      username,
-      password
-    })
-  }
 
   return (
     <>
@@ -44,16 +35,16 @@ const Login = () => {
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" size={"sm"} onChange={e => setUserName(e.target.value)} />
+                  <Form.Control type="text" size={"sm"} name={"username"} />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" size={"sm"} onChange={e => setPassword(e.target.value)}/>
+                  <Form.Control type="password" size={"sm"} name={"password"} />
                 </Form.Group>
 
                 <div className="d-grid gap-2">
-                  <Button variant="primary" type="submit" size={"sm"} className={"btn-block"}>
+                  <Button variant="primary" type="submit" size={"sm"} className={"btn-block"} >
                     Sign In
                   </Button>
                 </div>

@@ -1,10 +1,10 @@
 import {Navigate, useLocation} from 'react-router-dom';
-import useToken from "../hooks/useToken";
+import {useAuth} from "../contexts/AuthContext";
 
 
 const LoginRequired = ({ children }) => {
   const location = useLocation()
-  const {getToken} = useToken()
+  const {getToken} = useAuth()
   const token = getToken()
 
   if (!token?.access) {

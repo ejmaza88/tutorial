@@ -11,7 +11,7 @@ const AuthProvider = ({children}) => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  const {saveToken, delToken} = useToken()
+  const {getToken, saveToken, delToken} = useToken()
 
   const loginRequest = async (credentials) => {
     return fetch('http://localhost:8000/auth/token/', {
@@ -24,9 +24,16 @@ const AuthProvider = ({children}) => {
       .then(data => data.json())
   }
 
-  const handleLogin = async (credentials) => {
+  const handleLogin = async (event) => {
+    event.preventDefault()
+
+    const credentials = {
+      username: event.target.username.value,
+      password: event.target.password.value
+    }
     const token = await loginRequest(credentials)
     saveToken(token)
+
     const origin = location.state?.from?.pathname || '/dashboard'
     navigate(origin)
   }
@@ -38,6 +45,7 @@ const AuthProvider = ({children}) => {
 
 
   const value = {
+    getToken: getToken,
     handleLogin: handleLogin,
     handleLogout: handleLogout,
   }
