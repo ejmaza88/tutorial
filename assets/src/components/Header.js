@@ -49,8 +49,8 @@ const HeaderComp = () => {
                 <i className="bi bi-box-arrow-right"/> Sign Out
               </NavDropdown.Item>
 
-              <Link to={"sign/out"}>
-                <i className="bi bi-box-arrow-right"/> Sign Out
+              <Link to={"sign/out"} className="dropdown-item">
+                <i className="bi bi-box-arrow-right"/> Logout
               </Link>
             </NavDropdown>
           </li>

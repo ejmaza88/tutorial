@@ -1,5 +1,6 @@
 import React, {Suspense, lazy} from "react";
 import {createBrowserRouter} from "react-router-dom";
+import login from "../pages/Auth/Login/Login";
 
 
 const Loadable = (Component) => (props) => (
@@ -9,6 +10,9 @@ const Loadable = (Component) => (props) => (
 );
 
 // Pages
+const AuthLayout = Loadable(lazy(() => import("../components/AuthLayout")));
+const Login = Loadable(lazy(() => import("../pages/Auth/Login/Login")));
+
 const AppLayout = Loadable(lazy(() => import("../components/Layout")));
 const Home = Loadable(lazy(() => import("../pages/Home")));
 const Dashboard = Loadable(lazy(() => import("../pages/Dashboard")));
@@ -18,6 +22,16 @@ const SignOut = Loadable(lazy(() => import("../pages/NavBar/SignOut/SignOut")));
 
 
 const routes = createBrowserRouter([
+  {
+    path: "auth",
+    element: <AuthLayout />,
+    children: [
+      {
+        path: "login",
+        element: <Login />
+      }
+    ]
+  },
   {
     path: "",
     element: <AppLayout/>,
@@ -41,6 +55,10 @@ const routes = createBrowserRouter([
       {
         path: "sign/out",
         element: <SignOut />,
+      },
+      {
+        path: "login",
+        element: <Login />,
       },
     ]
   }

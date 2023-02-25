@@ -5,12 +5,12 @@ import {Outlet} from "react-router-dom";
 import Footer from "./Footer";
 
 const AppLayout = () => {
-    return (
+  return (
     <>
       <HeaderComp/>
       <Sidebar/>
       <main id="main" className="main">
-        <Outlet />
+        <Outlet/>
       </main>
       <Footer/>
     </>

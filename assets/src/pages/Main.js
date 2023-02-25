@@ -1,5 +1,5 @@
 import React from 'react'
-import {useName} from "../contexts/NameContext/NameContext";
+import {useName} from "../contexts/NameContext";
 
 const Main = (props) => {
   // const [name, setName] = useName()

@@ -1,6 +1,8 @@
-import React, {useContext, useState} from 'react';
+import React, { createContext, useContext, useState } from 'react';
 
-const NameContext = React.createContext(null);
+
+const NameContext = createContext(null);
+
 
 const NameProvider = ({ children }) => {
   const [name, setName] = useState("Aldez")
@@ -12,9 +14,11 @@ const NameProvider = ({ children }) => {
   )
 }
 
+
 const useName = () => {
   return useContext(NameContext)
 }
+
 
 export {
   NameProvider,

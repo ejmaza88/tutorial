@@ -1,33 +1,23 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
+import {useAuth} from "../../../contexts/AuthContext";
 
 import './Login.css'
 
 
-const loginUser = async (credentials) => {
- return fetch('http://localhost:8000/auth/token/', {
-   method: 'POST',
-   headers: {
-     'Content-Type': 'application/json'
-   },
-   body: JSON.stringify(credentials)
- })
-   .then(data => data.json())
-}
 
+const Login = () => {
+  const { handleLogin } = useAuth()
 
-export default function Login({setToken}) {
   const [username, setUserName] = useState();
   const [password, setPassword] = useState();
 
   const handleSubmit = async e => {
     e.preventDefault();
 
-    const token = await loginUser({
+    handleLogin({
       username,
       password
-    });
-    setToken(token);
+    })
   }
 
   return(
@@ -50,6 +40,4 @@ export default function Login({setToken}) {
   )
 }
 
-Login.propTypes = {
-  setToken: PropTypes.func.isRequired
-}
+export default Login
