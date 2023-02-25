@@ -1,8 +1,8 @@
 const useToken = () => {
   const getToken = () => {
     const tokenString = localStorage.getItem('token');
-    const userToken = JSON.parse(tokenString);
-    return userToken?.token
+    const tokenPair = JSON.parse(tokenString);
+    return tokenPair
   };
 
   const saveToken = userToken => {

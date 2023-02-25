@@ -1,6 +1,6 @@
 import React, {Suspense, lazy} from "react";
 import {createBrowserRouter} from "react-router-dom";
-import login from "../pages/Auth/Login/Login";
+import LoginRequired from "../components/LoginRequired";
 
 
 const Loadable = (Component) => (props) => (
@@ -42,15 +42,15 @@ const routes = createBrowserRouter([
       },
       {
         path: "dashboard",
-        element: <Dashboard/>,
+        element: <LoginRequired> <Dashboard/> </LoginRequired>,
       },
       {
         path: "main",
-        element: <Main name={"esvin mazariegos"} />,
+        element: <LoginRequired> <Main name={"esvin mazariegos"} /> </LoginRequired>,
       },
       {
         path: "blank",
-        element: <Blank name={"aldez mazariegos"} />,
+        element: <LoginRequired><Blank name={"aldez mazariegos"} /></LoginRequired>,
       },
       {
         path: "sign/out",
@@ -63,5 +63,6 @@ const routes = createBrowserRouter([
     ]
   }
 ]);
+
 
 export default routes
