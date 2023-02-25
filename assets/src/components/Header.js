@@ -1,13 +1,19 @@
 import React from 'react'
 import Logo from '../assets/img/logo.png'
 import NavDropdown from 'react-bootstrap/NavDropdown';
-import { Link } from "react-router-dom";
+import {useAuth} from "../contexts/AuthContext";
 
 
 const HeaderComp = () => {
+  const {handleLogout} = useAuth()
 
   const handleSideBar = () => {
     document.querySelector('body').classList.toggle('toggle-sidebar')
+  }
+
+  const logout = (e) => {
+    e.preventDefault()
+    handleLogout()
   }
 
   return (
@@ -45,13 +51,10 @@ const HeaderComp = () => {
               </NavDropdown.Item>
               <NavDropdown.Divider />
 
-              <NavDropdown.Item href="#action/3.4">
-                <i className="bi bi-box-arrow-right"/> Sign Out
+              <NavDropdown.Item href="#" onClick={logout}>
+                <i className="bi bi-box-arrow-right"/> Logout
               </NavDropdown.Item>
 
-              <Link to={"sign/out"} className="dropdown-item">
-                <i className="bi bi-box-arrow-right"/> Logout
-              </Link>
             </NavDropdown>
           </li>
 
