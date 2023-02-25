@@ -1,6 +1,6 @@
 import React, {createContext, useContext} from 'react';
 import useToken from "../hooks/useToken";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
 
 
 const AuthContext = createContext(null)
@@ -8,6 +8,7 @@ const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
 
+  const location = useLocation()
   const navigate = useNavigate()
 
   const {saveToken} = useToken()
@@ -26,7 +27,8 @@ const AuthProvider = ({children}) => {
   const handleLogin = async (credentials) => {
     const token = await loginRequest(credentials)
     saveToken(token)
-    navigate('/dashboard')
+    const origin = location.state?.from?.pathname || '/dashboard'
+    navigate(origin)
   }
 
 
