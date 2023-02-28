@@ -1,27 +1,27 @@
 import React from 'react'
+import LoginRequired from "../../components/LoginRequired";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
 import {useLoaderData} from "react-router-dom";
-import LoginRequired from "../components/LoginRequired";
-import useDocumentTitle from "../hooks/useDocumentTitle";
-import PageHeader from "../components/PageHeader";
+import PageHeader from "../../components/PageHeader";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 
 
-const Blank = () => {
-  const blank = "Blank"
-  useDocumentTitle(blank)
-  const users = useLoaderData()
+const Main = () => {
+  const mainTitle = "Main"
+  useDocumentTitle(mainTitle)
+  const data = useLoaderData()
 
   return (
     <>
       <LoginRequired>
-        <PageHeader title={blank}/>
+        <PageHeader title={mainTitle}/>
         <Container>
           <Row>
             <Col lg={6}>
-              <Card body>{users ? <pre>{JSON.stringify(users, undefined, 2)}</pre> : null}</Card>
+              <Card body>{data ? <pre>{JSON.stringify(data, undefined, 2)}</pre> : null}</Card>
             </Col>
           </Row>
         </Container>
@@ -30,5 +30,4 @@ const Blank = () => {
   )
 }
 
-
-export default Blank
+export default Main

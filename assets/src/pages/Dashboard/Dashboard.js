@@ -1,23 +1,24 @@
 import React from 'react'
 import {useLoaderData} from "react-router-dom";
-import LoginRequired from "../components/LoginRequired";
-import useDocumentTitle from "../hooks/useDocumentTitle";
-import PageHeader from "../components/PageHeader";
+import LoginRequired from "../../components/LoginRequired";
+import useDocumentTitle from "../../hooks/useDocumentTitle";
+import PageHeader from "../../components/PageHeader";
+import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
-import Container from "react-bootstrap/Container";
 
 
-const Blank = () => {
-  const blank = "Blank"
-  useDocumentTitle(blank)
+
+const Dashboard = () => {
+  const dashboard = "Dashboard"
+  useDocumentTitle(dashboard)
   const users = useLoaderData()
 
   return (
     <>
       <LoginRequired>
-        <PageHeader title={blank}/>
+        <PageHeader title={dashboard}/>
         <Container>
           <Row>
             <Col lg={6}>
@@ -31,4 +32,4 @@ const Blank = () => {
 }
 
 
-export default Blank
+export default Dashboard

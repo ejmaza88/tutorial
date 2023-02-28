@@ -1,6 +1,7 @@
 import React, {createContext, useContext} from 'react';
 import useToken from "../hooks/useToken";
 import { useNavigate, useLocation } from "react-router-dom";
+import {useNetwork} from "../utils/Network";
 
 
 const AuthContext = createContext(null)
@@ -8,21 +9,11 @@ const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
 
+  const {loginUser} = useNetwork()
   const location = useLocation()
   const navigate = useNavigate()
 
-  const {getToken, saveToken, delToken, tokenPayload} = useToken()
-
-  const loginRequest = async (credentials) => {
-    return fetch('http://localhost:8000/auth/token/', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify(credentials)
-    })
-      .then(data => data.json())
-  }
+  const {getTokenPair, saveToken, delToken, tokenPayload} = useToken()
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -31,7 +22,7 @@ const AuthProvider = ({children}) => {
       username: event.target.username.value,
       password: event.target.password.value
     }
-    const token = await loginRequest(credentials)
+    const token = await loginUser(credentials)
     saveToken(token)
 
     const origin = location.state?.from?.pathname || '/dashboard'
@@ -45,7 +36,7 @@ const AuthProvider = ({children}) => {
 
 
   const value = {
-    getToken: getToken,
+    getTokenPair: getTokenPair,
     tokenPayload: tokenPayload,
     handleLogin: handleLogin,
     handleLogout: handleLogout,

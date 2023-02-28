@@ -2,7 +2,7 @@ from typing import TYPE_CHECKING
 
 from rest_framework.views import APIView
 from rest_framework.response import Response
-from rest_framework import authentication, permissions
+# from rest_framework import authentication, permissions
 from django.contrib.auth.models import User
 from quickstart.serializers import UserSerializer
 from django.shortcuts import get_object_or_404
@@ -25,8 +25,8 @@ class ListUsers(APIView):
     * Only admin users are able to access this view.
     """
     # authentication_classes = [authentication.TokenAuthentication]
-    authentication_classes = [authentication.BasicAuthentication]
-    permission_classes = [permissions.IsAdminUser]
+    # authentication_classes = [authentication.BasicAuthentication]
+    # permission_classes = [permissions.IsAdminUser]
 
     def get(self, request, format=None):
         """

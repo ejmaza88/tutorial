@@ -2,14 +2,14 @@ import jwt_decode from "jwt-decode";
 
 const useToken = () => {
 
-  const getToken = () => {
+  const getTokenPair = () => {
+    // return token pair (access, refresh)
     const tokenString = localStorage.getItem('token');
-    const tokenPair = JSON.parse(tokenString);
-    return tokenPair
+    return JSON.parse(tokenString);
   }
 
-  const saveToken = userToken => {
-    localStorage.setItem('token', JSON.stringify(userToken));
+  const saveToken = tokenPair => {
+    localStorage.setItem('token', JSON.stringify(tokenPair));
   };
 
   const delToken = () => {
@@ -17,12 +17,16 @@ const useToken = () => {
   }
 
   const tokenPayload = () => {
-    const token = getToken().access
-    return jwt_decode(token)
+    const token = getTokenPair()
+    const access = token?.access
+    if(access) {
+      return jwt_decode(access)
+    }
+    return
   }
 
   return {
-    getToken: getToken,
+    getTokenPair: getTokenPair,
     saveToken: saveToken,
     delToken: delToken,
     tokenPayload: tokenPayload

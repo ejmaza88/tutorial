@@ -6,6 +6,7 @@ import {useAuth} from "../contexts/AuthContext";
 
 const HeaderComp = () => {
   const {handleLogout, tokenPayload} = useAuth()
+  const tokenPayloadData = tokenPayload()
 
   const handleSideBar = () => {
     document.querySelector('body').classList.toggle('toggle-sidebar')
@@ -34,7 +35,7 @@ const HeaderComp = () => {
 
             <NavDropdown
               id="nav-dropdown-dark-example"
-              title={tokenPayload().username}
+              title={tokenPayloadData?.username}
             >
               <NavDropdown.Item href="#action/3.1">
                 <i className="bi bi-person"/> My Profile

@@ -28,7 +28,27 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 CORS_ORIGIN_ALLOW_ALL = True
-
+# CORS_ALLOW_CREDENTIALS = True
+# CORS_ALLOW_METHODS = [
+#     "DELETE",
+#     "GET",
+#     "OPTIONS",
+#     "PATCH",
+#     "POST",
+#     "PUT",
+# ]
+# CORS_ALLOW_HEADERS = [
+#     "accept",
+#     "accept-encoding",
+#     "authorization",
+#     "content-type",
+#     "dnt",
+#     "origin",
+#     "user-agent",
+#     "x-csrftoken",
+#     "x-requested-with",
+#     "X-Esvin"
+# ]
 
 # Application definition
 
@@ -130,8 +150,8 @@ REST_FRAMEWORK = {
 
 # SJWT
 SIMPLE_JWT = {
-    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
-    "REFRESH_TOKEN_LIFETIME": timedelta(days=1),
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=1),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=5),
     "ROTATE_REFRESH_TOKENS": True,
     "BLACKLIST_AFTER_ROTATION": True,
 }
