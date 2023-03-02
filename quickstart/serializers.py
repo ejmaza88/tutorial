@@ -7,7 +7,18 @@ from rest_framework import serializers
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        exclude = ("password", "groups", "user_permissions")
+        # exclude = ("password", "groups", "user_permissions")
+        fields = (
+            "id",
+            "is_superuser",
+            "username",
+            "first_name",
+            "last_name",
+            "email",
+            "is_staff",
+            "is_active",
+        )
+        read_only_fields = fields
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -21,4 +32,12 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields = "__all__"
+        fields = (
+            "id",
+            "username",
+            "timestamp",
+            "name",
+            "new_item",
+            "user"
+        )
+        read_only_fields = fields

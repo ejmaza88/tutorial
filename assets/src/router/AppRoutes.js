@@ -1,7 +1,10 @@
 import React, {lazy} from "react";
 import Loadable from "../utils/utils";
+import Oops from "../components/Oops";
 import {DashboardLoader} from "../pages/Dashboard/DashboardLoader";
 import {MainLoader} from "../pages/Main/MainLoader";
+import * as Constants from "../constants/Constants";
+
 
 
 const AppLayout = Loadable(lazy(() => import("../components/Layout")));
@@ -14,33 +17,38 @@ const Blank = Loadable(lazy(() => import("../pages/Blank")));
 const appRoutes = {
   path: "",
   element: <AppLayout/>,
-  children: [
-    {
-      path: "/",
-      element: <Home/>,
-    },
-    {
-      path: "dashboard",
-      element: <Dashboard/>,
-      loader: async () => {
-        return await DashboardLoader()
+  children: [{
+    errorElement: <Oops/>,
+    children: [
+      {
+        path: Constants.Root.path,
+        element: <Home/>,
+        errorElement: <Oops/>
+      },
+      {
+        path: Constants.Dashboard.path,
+        element: <Dashboard/>,
+        loader: async () => {
+          return await DashboardLoader()
+        }
+      },
+      {
+        path: Constants.Main.path,
+        element: <Main/>,
+        // errorElement: <Loading />,
+        loader: async () => {
+          return await MainLoader()
+        }
+      },
+      {
+        path: Constants.Blank.path,
+        element: <Blank/>,
+        loader: async () => {
+          return await MainLoader()
+        }
       }
-    },
-    {
-      path: "main",
-      element: <Main/>,
-      loader: async () => {
-        return await MainLoader()
-      }
-    },
-    {
-      path: "blank",
-      element: <Blank/>,
-      loader: async () => {
-        return await MainLoader()
-      }
-    }
-  ]
+    ]
+  }]
 }
 
 
