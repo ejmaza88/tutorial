@@ -46,7 +46,7 @@ class Category(ArchiveModel):
     class Meta:
         verbose_name = 'Category'
         verbose_name_plural = 'Categories'
-        ordering = ['name']
+        ordering = ['-timestamp']
 
     def __str__(self):
         """Return a human-readable string representing a record"""

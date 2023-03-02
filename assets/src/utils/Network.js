@@ -73,10 +73,19 @@ const useNetwork = () => {
     return resp.data
   }
 
+  const categoryAdd = async (newCategoryData) => {
+    const resp = await axiosInstance.post(
+      "category/",
+      newCategoryData,
+    )
+    return resp.data
+  }
+
   return {
     loginUser,
     userList,
     categories,
+    categoryAdd,
   }
 }
 

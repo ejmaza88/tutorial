@@ -3,6 +3,7 @@ import Loadable from "../utils/utils";
 import Oops from "../components/Oops";
 import {DashboardLoader} from "../pages/Dashboard/DashboardLoader";
 import {MainLoader} from "../pages/Main/MainLoader";
+import {mainRoutes} from "../pages/Main/MainRoutes";
 import * as Constants from "../constants/Constants";
 
 
@@ -10,7 +11,6 @@ import * as Constants from "../constants/Constants";
 const AppLayout = Loadable(lazy(() => import("../components/Layout")));
 const Home = Loadable(lazy(() => import("../pages/Home")));
 const Dashboard = Loadable(lazy(() => import("../pages/Dashboard/Dashboard")));
-const Main = Loadable(lazy(() => import("../pages/Main/Main")));
 const Blank = Loadable(lazy(() => import("../pages/Blank")));
 
 
@@ -32,14 +32,7 @@ const appRoutes = {
           return await DashboardLoader()
         }
       },
-      {
-        path: Constants.Main.path,
-        element: <Main/>,
-        // errorElement: <Loading />,
-        loader: async () => {
-          return await MainLoader()
-        }
-      },
+      {...mainRoutes},
       {
         path: Constants.Blank.path,
         element: <Blank/>,

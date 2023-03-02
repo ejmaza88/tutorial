@@ -18,7 +18,6 @@ class UserSerializer(serializers.ModelSerializer):
             "is_staff",
             "is_active",
         )
-        read_only_fields = fields
 
 
 class GroupSerializer(serializers.ModelSerializer):
@@ -40,4 +39,3 @@ class CategorySerializer(serializers.ModelSerializer):
             "new_item",
             "user"
         )
-        read_only_fields = fields

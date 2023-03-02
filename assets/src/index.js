@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/client';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {NameProvider} from "./contexts/NameContext";
+import store from "./redux/store/Store";
+import {Provider} from "react-redux";
 
 
 import './index.css';
@@ -12,11 +14,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
+
 root.render(
   <React.StrictMode>
-    <NameProvider>
-      <App/>
-    </NameProvider>
+    <Provider store={store}>
+      <NameProvider>
+        <App/>
+      </NameProvider>
+    </Provider>
   </React.StrictMode>
 );
 
