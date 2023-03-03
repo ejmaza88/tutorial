@@ -6,7 +6,7 @@ import Loading from "../../components/Loading";
 import {Outlet, useLoaderData, Link, useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from 'react-redux'
 import {load, save} from "../../redux/slices/CategorySlice/CategorySlice";
-import {useNetwork} from "../../utils/Network";
+import ApiNetwork from "../../network/ApiNetwork";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
@@ -46,14 +46,13 @@ const CategoryForm = () => {
   useDocumentTitle("Main - Add")
   const [loading, setLoading] = useState(false)
 
-  const {categoryAdd} = useNetwork()
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const handleAddCategory = async (e) => {
     e.preventDefault()
     setLoading(true)
-    const data = await categoryAdd({name: e.target.category.value})
+    const data = await ApiNetwork.categoryAdd({name: e.target.category.value})
     dispatch(save(data.category))
     e.target.category.value = ""
     setLoading(false)

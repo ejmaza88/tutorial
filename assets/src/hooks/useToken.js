@@ -1,28 +1,27 @@
-import jwt_decode from "jwt-decode";
+import {
+  localStorageGetTokenPair,
+  localStorageSaveTokenPair,
+  localStorageRemoveTokenPair,
+  localStorageTokenPayload,
+} from "../token/token";
+
 
 const useToken = () => {
 
   const getTokenPair = () => {
-    // return token pair (access, refresh)
-    const tokenString = localStorage.getItem('token');
-    return JSON.parse(tokenString);
+    return localStorageGetTokenPair()
   }
 
   const saveToken = tokenPair => {
-    localStorage.setItem('token', JSON.stringify(tokenPair));
+    localStorageSaveTokenPair(tokenPair)
   };
 
   const delToken = () => {
-    localStorage.removeItem("token")
+    localStorageRemoveTokenPair()
   }
 
   const tokenPayload = () => {
-    const token = getTokenPair()
-    const access = token?.access
-    if(access) {
-      return jwt_decode(access)
-    }
-    return
+    return localStorageTokenPayload()
   }
 
   return {

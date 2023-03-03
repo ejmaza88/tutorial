@@ -1,7 +1,7 @@
 import React, {lazy} from "react";
 import Loadable from "../../utils/utils";
-import {MainLoader} from "./MainLoader";
 import {CategoryDisplay, CategoryForm} from "./Main";
+import API from "../../network/ApiNetwork";
 import * as Constants from "../../constants/Constants";
 
 
@@ -12,7 +12,7 @@ const mainRoutes = {
   path: Constants.Main.path,
   element: <Main/>,
   loader: async () => {
-    return await MainLoader()
+    return await API.categories()
   },
   children: [
     {

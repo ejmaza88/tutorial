@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {useAuth} from "../../../contexts/AuthContext";
 import Button from 'react-bootstrap/Button';
 import Container from 'react-bootstrap/Container';
@@ -13,9 +13,10 @@ import './Login.css'
 
 
 const Login = () => {
+  const [error, setError] = useState()
   const {handleLogin} = useAuth()
 
-  const handleSubmit = async (e) => handleLogin(e)
+  const handleSubmit = async (e) => handleLogin(e, setError)
 
 
   return (
@@ -29,17 +30,23 @@ const Login = () => {
         </Row>
 
         <Row className="justify-content-md-center">
+          <Col className={"text-center"}>
+            <div className="text-danger pb-3">{error ? error : null}</div>
+          </Col>
+        </Row>
+
+        <Row className="justify-content-md-center">
           <Col xs lg={4}>
             <Card body>
               <Form onSubmit={handleSubmit}>
                 <Form.Group className="mb-3">
                   <Form.Label>Username</Form.Label>
-                  <Form.Control type="text" size={"sm"} name={"username"} />
+                  <Form.Control type="text" size={"sm"} name={"username"} required />
                 </Form.Group>
 
                 <Form.Group className="mb-3">
                   <Form.Label>Password</Form.Label>
-                  <Form.Control type="password" size={"sm"} name={"password"} />
+                  <Form.Control type="password" size={"sm"} name={"password"} required />
                 </Form.Group>
 
                 <div className="d-grid gap-2">

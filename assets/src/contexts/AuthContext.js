@@ -1,7 +1,7 @@
 import React, {createContext, useContext} from 'react';
 import useToken from "../hooks/useToken";
+import ApiNetwork from "../network/ApiNetwork";
 import { useNavigate, useLocation } from "react-router-dom";
-import {useNetwork} from "../utils/Network";
 
 
 const AuthContext = createContext(null)
@@ -9,20 +9,23 @@ const AuthContext = createContext(null)
 
 const AuthProvider = ({children}) => {
 
-  const {loginUser} = useNetwork()
   const location = useLocation()
   const navigate = useNavigate()
 
   const {getTokenPair, saveToken, delToken, tokenPayload} = useToken()
 
-  const handleLogin = async (event) => {
+  const handleLogin = async (event, setError) => {
     event.preventDefault()
 
     const credentials = {
       username: event.target.username.value,
       password: event.target.password.value
     }
-    const token = await loginUser(credentials)
+    const token = await ApiNetwork.userLogin(credentials)
+    if (token.err) {
+      setError(token.detail)
+      return
+    }
     saveToken(token)
 
     const origin = location.state?.from?.pathname || '/dashboard'

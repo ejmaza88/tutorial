@@ -1,12 +1,12 @@
 import React from "react";
 import axios from "axios";
+import {refreshTokenIfNeeded} from "../token/token";
 import useToken from "../hooks/useToken";
-import dayjs from "dayjs";
 
 
 const useNetwork = () => {
   const baseURL = "http://localhost:8000/"
-  const {getTokenPair, tokenPayload, saveToken, delToken} = useToken()
+  const {getTokenPair} = useToken()
 
 
   // Main instance
@@ -21,25 +21,13 @@ const useNetwork = () => {
 
   // Config
   axiosInstance.interceptors.request.use(async req => {
-    await refreshTokenIfNeeded()
+    await refreshTokenIfNeeded(baseURL)
     req.headers.Authorization = `Bearer ${getTokenPair()?.access}`
     return req;
 
   }, (error) => {
     return Promise.reject(error);
   })
-
-  const refreshTokenIfNeeded = async () => {
-    const tokenExpired = tokenPayload()?.exp <= dayjs().unix()
-    if (tokenExpired) {
-      // using global axios instance to prevent infinite loop
-      const resp = await axios.post(`${baseURL}auth/token/refresh/`,
-        {refresh: getTokenPair()?.refresh}
-      )
-      delToken() // delete existing token
-      saveToken(resp.data)  //save new token
-    }
-  }
 
 
   // Network calls
