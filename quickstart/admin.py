@@ -1,6 +1,6 @@
 from django.contrib import admin
 from rest_framework.authtoken.admin import TokenAdmin
-from quickstart.models import Category
+from quickstart.models import Category, Baby, Diaper, Formula, Expressed
 
 
 # DRF stuff
@@ -22,5 +22,26 @@ class ArchivedModelAdmin(admin.ModelAdmin):
 
 @admin.register(Category)
 class CategoryAdmin(ArchivedModelAdmin):
-    list_display = ('name', 'new_item')
+    list_display = ('name', 'new_item',)
     search_fields = ('name',)
+
+
+@admin.register(Baby)
+class BabyAdmin(admin.ModelAdmin):
+    list_display = ("name", "dob", "time_of_birth", "due_day",)
+    search_fields = ('name',)
+
+
+@admin.register(Diaper)
+class DiaperAdmin(ArchivedModelAdmin):
+    list_display = ("get_status_display", "baby",)
+
+
+@admin.register(Formula)
+class FormulaAdmin(ArchivedModelAdmin):
+    list_display = ("amount", "baby",)
+
+
+@admin.register(Expressed)
+class ExpressedAdmin(ArchivedModelAdmin):
+    list_display = ("amount", "baby",)
