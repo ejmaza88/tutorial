@@ -2,6 +2,7 @@ import React, {createContext, useContext} from 'react';
 import useToken from "../hooks/useToken";
 import ApiNetwork from "../network/ApiNetwork";
 import { useNavigate, useLocation } from "react-router-dom";
+import * as Constants from "../constants/Constants"
 
 
 const AuthContext = createContext(null)
@@ -28,7 +29,7 @@ const AuthProvider = ({children}) => {
     }
     saveToken(token)
 
-    const origin = location.state?.from?.pathname || '/dashboard'
+    const origin = location.state?.from?.pathname || `/${Constants.Diaper.path}`
     navigate(origin)
   }
 

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 from quickstart.serializers import UserSerializer
 from django.shortcuts import get_object_or_404
 
-from quickstart.models import Category
+from quickstart.models import Category, Diaper
 from quickstart.serializers import CategorySerializer
 
 from rest_framework import status
@@ -51,6 +51,12 @@ class ListCategories(APIView):
             "success": True
         }
         return Response(context)
+
+
+class DiaperChoices(APIView):
+
+    def get(self, request):
+        return Response([{"label": x[1], "value": x[0]} for x in Diaper.STATUS_CHOICES])
 
 
 class CategoryView(APIView):

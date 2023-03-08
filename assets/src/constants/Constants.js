@@ -3,25 +3,18 @@ const Root = {
   path: "/",
 }
 
-const Dashboard = {
-  label: "Dashboard",
-  path: "dashboard",
+const Diaper = {
+  label: "Diaper",
+  path: "diaper",
 }
 
 const Main = {
-  label: "Main",
+  label: "Feeding",
   path: "main",
 }
 
-const Blank = {
-  label: "Blank",
-  path: "blank",
-}
-
-
 export {
   Root,
-  Dashboard,
+  Diaper,
   Main,
-  Blank,
 }

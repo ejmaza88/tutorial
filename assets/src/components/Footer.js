@@ -6,7 +6,7 @@ const Footer = () => {
     <>
       <footer id="footer" className="footer">
         <div className="copyright">
-          &copy; Copyright <strong><span>Aldezo</span></strong>. All Rights Reserved
+          &copy; Copyright <strong><span>Tracker</span></strong>. All Rights Reserved
         </div>
         <div className="credits">
           Made with <i className="bi bi-heart"></i> in Milwaukee, WI

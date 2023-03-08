@@ -1,5 +1,5 @@
 from django.contrib.auth.models import User, Group
-from quickstart.models import Category
+from quickstart.models import Category, Baby, Diaper, Formula, Expressed
 
 from rest_framework import serializers
 
@@ -39,3 +39,30 @@ class CategorySerializer(serializers.ModelSerializer):
             "new_item",
             "user"
         )
+
+
+class BabySerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Baby
+        fields = ("name", "gender", "dob", "time_of_birth", "due_day",)
+
+
+class DiaperSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Diaper
+        fields = ("status", "time", "notes",)
+
+
+class FormulaSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Formula
+        fields = ("time", "amount", "notes",)
+
+
+class ExpressedSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Expressed
+        fields = ("time", "amount", "notes",)

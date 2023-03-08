@@ -4,18 +4,18 @@ import API from "../../network/ApiNetwork";
 import * as Constants from "../../constants/Constants";
 
 
-const Dashboard = Loadable(lazy(() => import("./Dashboard")))
+const Diaper = Loadable(lazy(() => import("./Diaper")))
 
 
-const dashboardRoutes = {
-  path: Constants.Dashboard.path,
-  element: <Dashboard/>,
+const diaperRoutes = {
+  path: Constants.Diaper.path,
+  element: <Diaper/>,
   loader: async () => {
-    return await API.userList()
+    return await API.diaperChoices()
   }
 }
 
 
 export {
-  dashboardRoutes
+  diaperRoutes
 }

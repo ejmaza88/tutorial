@@ -65,10 +65,18 @@ const categoryAdd = async (newCategoryData) => {
   return resp.data
 }
 
+const diaperChoices = async () => {
+    const resp = await axiosInstance.get(
+    "diaper/choices/",
+  )
+  return resp.data
+}
+
 
 export default {
   userLogin,
   userList,
   categories,
   categoryAdd,
+  diaperChoices,
 }

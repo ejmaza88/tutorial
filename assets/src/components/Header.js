@@ -23,7 +23,7 @@ const HeaderComp = () => {
       <div className="d-flex align-items-center justify-content-between">
         <div className="logo d-flex align-items-center">
           <img src={Logo} alt="Aldezo logo"/>
-          <span className="d-none d-lg-block">Aldezo</span>
+          <span className="d-none d-lg-block">Tracker</span>
         </div>
         <i className="bi bi-list toggle-sidebar-btn" onClick={handleSideBar} />
       </div>
